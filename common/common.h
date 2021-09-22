@@ -4,14 +4,10 @@
 #include<stdio.h>
 #include<errno.h>
 #include<linux/version.h>
+#include<stdlib.h>
 
-inline void __debug(const char* buf) {
-	printf("[debug]:%s\n", buf);
-}
-
-inline void __error(const char* buf) {
-	printf("[error]:%s\n", buf);
-}
+extern void __debug(const char* buf);
+extern void __error(const char* buf);
 
 #define _debug(...)\
  do{ char buf[8192]; snprintf(buf, 8192,__VA_ARGS__);  __debug(buf);}while(0)
@@ -29,3 +25,9 @@ if(!(x)){\
 	return ret;\
 }\
 }while(0);
+
+
+extern void* t_malloc(size_t size);
+extern int t_free(void* ptr);
+
+#endif

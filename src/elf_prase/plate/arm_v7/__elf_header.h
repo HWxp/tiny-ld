@@ -2,7 +2,7 @@
 #define ___EELF_HEADER__
 
 
-struct _elf_header {
+typedef struct _elf_header {
 
 }*_elf_header_t;
 
