@@ -3,8 +3,8 @@
 
 #include<stdio.h>
 #include<errno.h>
-#include<linux/version.h>
 #include<stdlib.h>
+#include<string.h>
 
 extern void __debug(const char* buf);
 extern void __error(const char* buf);
