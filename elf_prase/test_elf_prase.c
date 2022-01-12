@@ -1,6 +1,7 @@
 #include"elf_prase.h"
-#include<stdio.h>
 
+
+#include<stdio.h>
 void cmd() {
 	printf("./main fpath\n");
 }
@@ -11,7 +12,6 @@ int main(int argv, char** argc) {
 		cmd();
 		return 0;
 	}
-
 
 	elf_prase(argc[1]);
 	return 0;

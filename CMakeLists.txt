@@ -1,42 +1,15 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-PROJECT(TINY-LD)
+cmake_minimum_required (VERSION 3.8)
 
 
-#BUILD_OPTION test | program | so | a
-#TEST_OPTION elf_prase
-#PLATFORM arm_v7
-#CROSS arm-linux-gnueabihf
-#cmake -DBUILD_OPTION=program|test|so|a [-DTEST_OPTION=elf_prase] -DPLATFORM=arm_v7 -DCROSS=arm-linux-gnueabihf
+#test ½ö±àÒë²âÊÔ´úÂë
+#study ½ö±àÒëstudy´úÂë
+option (USE_TEST "do test" ON)
+option (USE_STUDY "do study" ON)
 
+project ("tind-ld")
 
-SET(BUILD_OPTION test)
-SET(TEST_OPTION elf_prase)
-SET(PLATFORM arm_v7)
-SET(CROSS arm-linux-gnueabihf)
+add_subdirectory ("elf_prase")
 
-
-SET(CMAKE_C_COMPILER ${CROSS}-gcc)
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-
-
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/common)
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src/elf_prase)
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src/elf_prase/plate/${PLATFORM})
-
-
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR} SOURCE_DIR)
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/common SOURCE_DIR)
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/src SOURCE_DIR)
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/src/elf_prase SOURCE_DIR)
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/src/elf_prase/plate/${PLATFORM} SOURCE_DIR)
-
-
-if(BUILD_OPTION MATCHES "test")
-	SET(SOURCE_LIST ${CMAKE_SOURCE_DIR}/test/test_${TEST_OPTION}.c)
-endif()
-
-
-ADD_EXECUTABLE(main ${SOURCE_DIR} ${SOURCE_LIST})
-TARGET_LINK_LIBRARIES(main)
+if(USE_STUDY)
+	add_subdirectory ("study")
+endif(USE_STUDY)
